@@ -1,13 +1,3 @@
-const blockedUrls = [
-    "youtube",
-    "facebook",
-    "instagram",
-    "twitter",
-    "territorial.io",
-    "netflix",
-    "twitch"
-]
-
 chrome.webNavigation.onBeforeNavigate.addListener(async () => {
     await check();
 })
@@ -18,10 +8,22 @@ chrome.tabs.onActivated.addListener(async () => {
   
 
 async function check() {
-    const currentTab = await getCurrentTab();
-    const currentUrl = currentTab.url;
+    const result = await chrome.storage.local.get(["blockedUrls"]);
+    const blockedUrls = result?.blockedUrls;
+    if(!blockedUrls) return;
 
-    if(blockedUrls.some((url) => currentUrl.includes(url))) {
+
+    const currentTab = await getCurrentTab();
+    const currentUrl = currentTab?.url;
+
+    if(!currentUrl) return;
+
+    const deserializedUrl = new URL(currentUrl);
+    const domain = deserializedUrl.hostname;
+
+    if(!domain) return;
+
+    if(blockedUrls.some((url) => domain.includes(url))) {
         chrome.tabs.update(currentTab.id, {url: './static/blocked.html'});
     }
 }

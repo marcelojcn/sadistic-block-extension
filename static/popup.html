@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" style="min-width: 400px; min-height:200px; margin:20px;">
+  <head>
+    <!-- Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    />
+
+    <!-- CSS Reset -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
+    />
+
+    <!-- Milligram CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <h3>A Sadistic Focus Extension</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row">
+          <div class="column">
+            <input
+                type="text"
+                placeholder="New url to be blocked..."
+                id="newBlockedUrl"
+            />
+            <button
+                id="newBlockedUrlButton"
+                class="button button-outline"
+            >
+            Add
+            </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <table id="blockedUrlsTable">
+          <thead>
+            <tr>
+              <th width="360px">Blocked</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="../js/popup.js"></script>
+</html>

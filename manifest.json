@@ -1,17 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Focus Extension",
+  "name": "Sadistic Focus",
   "description": "Allow you to focus on your work by blocking distracting websites",
-  "version": "1.0",
+  "version": "1.1",
   "icons": {
     "16": "images/stop_16.png",
     "32": "images/stop_32.png",
     "128": "images/stop_128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "js/background.js"
   },
   "action": {
+    "default_title": "Sadistic Focus",
+    "default_popup": "static/popup.html",
     "default_icon": {
         "16": "images/stop_16.png",
         "32": "images/stop_32.png",
@@ -20,6 +22,7 @@
   },
   "permissions": [
   "webNavigation",
-   "tabs"
+  "tabs",
+  "storage"
 ]
 }
