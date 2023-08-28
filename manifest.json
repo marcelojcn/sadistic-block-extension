@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Extension",
+  "description": "Allow you to focus on your work by blocking distracting websites",
+  "version": "1.0",
+  "icons": {
+    "16": "images/stop_16.png",
+    "32": "images/stop_32.png",
+    "128": "images/stop_128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+        "16": "images/stop_16.png",
+        "32": "images/stop_32.png",
+        "128": "images/stop_128.png"
+    }
+  },
+  "permissions": [
+  "webNavigation",
+   "tabs"
+]
+}
