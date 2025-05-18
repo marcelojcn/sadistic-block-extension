@@ -1,16 +1,22 @@
+interface BlockedUrl {
+  domain: string;
+  deleteAt?: Date;
+  createdAt: Date;
+}
+
 async function synchronizeExistingBlockedUrls(): Promise<void> {
   const div = document.getElementById("blockedUrlsTable") as HTMLDivElement;
   if (!div) return;
 
   const result = await chrome.storage.local.get(["blockedUrls"]);
-  const blockedUrls: string[] = result?.blockedUrls;
+  const blockedUrls: BlockedUrl[] = result?.blockedUrls;
 
   if (!blockedUrls) {
     return;
   }
 
   for (const url of blockedUrls) {
-    appendUrl(div, url);
+    appendUrl(div, url.domain);
   }
 }
 
@@ -32,7 +38,7 @@ function appendUrl(div: HTMLDivElement, url: string): void {
 
   const statusChild: HTMLDivElement = document.createElement("div");
   statusChild.innerHTML = "&#8734;";
-  statusChild.className = "text-gray-400 cursor-pointer";
+  statusChild.className = "text-gray-400";
   wrapperDiv.appendChild(statusChild);
 
   div.appendChild(wrapperDiv);
@@ -56,15 +62,20 @@ async function addWord(): Promise<void> {
   const url = deserializedUrl.hostname;
 
   const result = await chrome.storage.local.get(["blockedUrls"]);
-  let blockedUrls: string[] = result?.blockedUrls;
+  let blockedUrls: BlockedUrl[] = result?.blockedUrls;
 
   if (!blockedUrls) {
     blockedUrls = [];
-  } else if (blockedUrls.includes(url)) {
+  } else if (
+    blockedUrls.some((blockedUrl) => blockedUrl.domain.startsWith(url))
+  ) {
     return;
   }
 
-  blockedUrls.push(url);
+  blockedUrls.push({
+    domain: url,
+    createdAt: new Date(),
+  });
 
   await chrome.storage.local.set({ blockedUrls });
   addBlockedUrlToTheTable(url);

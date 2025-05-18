@@ -541,9 +541,6 @@ video {
 .h-36 {
   height: 9rem;
 }
-.h-64 {
-  height: 16rem;
-}
 .min-h-\[200px\] {
   min-height: 200px;
 }
@@ -555,9 +552,6 @@ video {
 }
 .flex-1 {
   flex: 1 1 0%;
-}
-.cursor-pointer {
-  cursor: pointer;
 }
 .flex-col {
   flex-direction: column;

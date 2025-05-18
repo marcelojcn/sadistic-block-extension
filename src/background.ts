@@ -3,6 +3,12 @@ interface Tab {
   url?: string;
 }
 
+interface BlockedUrl {
+  domain: string;
+  deleteAt?: Date;
+  createdAt: Date;
+}
+
 async function getCurrentTab(): Promise<Tab | undefined> {
   const queryOptions = { active: true, lastFocusedWindow: true };
   const [tab] = await chrome.tabs.query(queryOptions);
@@ -11,7 +17,7 @@ async function getCurrentTab(): Promise<Tab | undefined> {
 
 async function check(): Promise<void> {
   const result = await chrome.storage.local.get(["blockedUrls"]);
-  const blockedUrls: string[] = result?.blockedUrls;
+  const blockedUrls: BlockedUrl[] = result?.blockedUrls;
   if (!blockedUrls) return;
 
   const currentTab = await getCurrentTab();
@@ -24,7 +30,7 @@ async function check(): Promise<void> {
 
   if (!domain) return;
 
-  if (blockedUrls.some((url) => domain.includes(url))) {
+  if (blockedUrls.some((url) => domain.includes(url.domain))) {
     if (currentTab.id) {
       chrome.tabs.update(currentTab.id, { url: "./static/blocked.html" });
     }
