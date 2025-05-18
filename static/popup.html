@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="../css/output.css" />
   </head>
   <body>
-    <div class="container mx-auto px-4 rounded-sm">
+    <div class="container mx-auto px-4 my-5 rounded-sm h-64">
       <div class="mb-4">
         <h2 class="text-xl font-bold text-gray-700">
           A Sadistic approach to focus!
@@ -32,10 +32,75 @@
               type="text"
               placeholder="New url to be blocked..."
               id="newBlockedUrl"
-              class="w-full px-3 py-2 placeholder:italic placeholder:text-slate-400 text-sm"
+              class="w-full px-3 py-2 placeholder:italic placeholder:text-slate-400 text-sm border-none"
             />
-
             <hr class="shadow-sm" />
+          </div>
+          <div class="absolute right-20">
+            <button
+              id="dropdownRadioHelperButton"
+              data-dropdown-toggle="dropdownRadioHelper"
+              data-dropdown-offset-skidding="-60"
+              type="button"
+              class="my-3 hover:text-gray-400 hover:underline"
+            >
+              <svg
+                class="w-2.5 h-2.5 ms-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div
+              id="dropdownRadioHelper"
+              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-60 dark:bg-gray-700 dark:divide-gray-600"
+            >
+              <ul
+                class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownRadioHelperButton"
+              >
+                <li>
+                  <div
+                    class="flex p-2 rounded-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                  >
+                    <div class="flex items-center h-5">
+                      <input
+                        id="input-just-today"
+                        name="helper-radio"
+                        type="radio"
+                        value=""
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                      />
+                    </div>
+                    <div class="ms-2 text-sm">
+                      <label
+                        for="helper-radio-4"
+                        class="font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        <div>Just Today</div>
+                        <p
+                          id="helper-radio-text-4"
+                          class="text-xs font-normal text-gray-500 dark:text-gray-300"
+                        >
+                          Keep the website blocked for the whole day.
+                        </p>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
           <div>
             <button
@@ -58,5 +123,5 @@
   </body>
 
   <script type="text/javascript" src="../dist/popup.js"></script>
-  <script type="text/javascript" src="../dist/flowbite-init.js"></script>
+  <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
 </html>

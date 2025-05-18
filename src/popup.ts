@@ -16,28 +16,30 @@ async function synchronizeExistingBlockedUrls(): Promise<void> {
   }
 
   for (const url of blockedUrls) {
-    appendUrl(div, url.domain);
+    appendUrl(div, url);
   }
 }
 
-function addBlockedUrlToTheTable(url: string): void {
+function addBlockedUrlToTheTable(blockedUrl: BlockedUrl): void {
   const div = document.getElementById("blockedUrlsTable") as HTMLDivElement;
   if (!div) return;
 
-  appendUrl(div, url);
+  appendUrl(div, blockedUrl);
 }
 
-function appendUrl(div: HTMLDivElement, url: string): void {
+function appendUrl(div: HTMLDivElement, blockedUrl: BlockedUrl): void {
   const wrapperDiv: HTMLDivElement = document.createElement("div");
   wrapperDiv.className = "flex justify-between items-center";
 
   const urlChild: HTMLDivElement = document.createElement("div");
-  urlChild.innerHTML = `&#x2022; ${url}`;
+  urlChild.innerHTML = `&#x2022; ${blockedUrl.domain}`;
   urlChild.className = "pt-1 px-2 text-gray-800 font-light tracking-normal";
   wrapperDiv.appendChild(urlChild);
 
   const statusChild: HTMLDivElement = document.createElement("div");
-  statusChild.innerHTML = "&#8734;";
+  statusChild.innerHTML = blockedUrl.deleteAt
+    ? `until: ${blockedUrl.deleteAt.toLocaleString().split(",")[0]}`
+    : "&#8734;";
   statusChild.className = "text-gray-400";
   wrapperDiv.appendChild(statusChild);
 
@@ -72,13 +74,27 @@ async function addWord(): Promise<void> {
     return;
   }
 
-  blockedUrls.push({
+  const blockUrl: BlockedUrl = {
     domain: url,
     createdAt: new Date(),
-  });
+  };
+
+  const justTodayElement = document.getElementById(
+    "input-just-today"
+  ) as HTMLInputElement;
+
+  if (justTodayElement.checked) {
+    const now = new Date();
+    now.setDate(now.getDay() + 1);
+    now.setHours(0, 0, 0, 0);
+
+    blockUrl.deleteAt = now;
+  }
+
+  blockedUrls.push(blockUrl);
 
   await chrome.storage.local.set({ blockedUrls });
-  addBlockedUrlToTheTable(url);
+  addBlockedUrlToTheTable(blockUrl);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -86,5 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (button) {
     button.addEventListener("click", addWord);
   }
+
   synchronizeExistingBlockedUrls();
 });

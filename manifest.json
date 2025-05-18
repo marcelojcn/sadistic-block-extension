@@ -15,14 +15,13 @@
     "default_title": "Sadistic Focus",
     "default_popup": "static/popup.html",
     "default_icon": {
-        "16": "images/stop_16.png",
-        "32": "images/stop_32.png",
-        "128": "images/stop_128.png"
+      "16": "images/stop_16.png",
+      "32": "images/stop_32.png",
+      "128": "images/stop_128.png"
     }
   },
-  "permissions": [
-  "webNavigation",
-  "tabs",
-  "storage"
-]
+  "permissions": ["webNavigation", "tabs", "storage"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }
