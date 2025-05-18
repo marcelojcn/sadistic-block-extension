@@ -1,4 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" style="min-width: 400px; min-height:200px; margin:20px;">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  class="min-w-[400px] min-h-[200px] m-5"
+>
   <head>
     <!-- Google Fonts -->
     <link
@@ -12,50 +15,46 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
     />
 
-    <!-- Milligram CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
-    />
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="../css/output.css" />
   </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h3>A Sadistic Focus Extension</h3>
-        </div>
+  <body class="bg-white">
+    <div class="container mx-auto px-4">
+      <div class="mb-4">
+        <h3 class="text-xl font-bold">A Sadistic Focus Extension</h3>
       </div>
-      <div class="row">
-        <div class="row">
-          <div class="column">
+      <div class="mb-4">
+        <div class="flex gap-2">
+          <div class="flex-1">
             <input
-                type="text"
-                placeholder="New url to be blocked..."
-                id="newBlockedUrl"
+              type="text"
+              placeholder="New url to be blocked..."
+              id="newBlockedUrl"
+              class="w-full px-3 py-2 border rounded"
             />
+          </div>
+          <div>
             <button
-                id="newBlockedUrlButton"
-                class="button button-outline"
+              id="newBlockedUrlButton"
+              class="px-4 py-2 text-black rounded hover:bg-blue-600"
             >
-            Add
+              +
             </button>
-            </form>
           </div>
         </div>
       </div>
-      <div class="row">
-        <table id="blockedUrlsTable">
+      <div>
+        <table id="blockedUrlsTable" class="w-full">
           <thead>
             <tr>
-              <th width="360px">Blocked</th>
+              <th class="text-left py-2">Blocked</th>
             </tr>
           </thead>
-          <tbody>
-          </tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
   </body>
 
-  <script type="text/javascript" src="../js/popup.js"></script>
+  <script type="text/javascript" src="../dist/popup.js"></script>
 </html>

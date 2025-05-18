@@ -1,0 +1,27 @@
+{
+  "name": "sadistic-block-extension",
+  "version": "1.1.0",
+  "description": "Allow you to focus on your work by blocking distracting websites",
+  "scripts": {
+    "build": "tsc",
+    "build-css": "tailwindcss -i ./css/input.css -o ./css/output.css",
+    "watch": "tsc -w",
+    "watch-css": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@types/chrome": "^0.0.323",
+    "eslint": "^9.27.0",
+    "prettier": "3.5.3",
+    "tailwindcss": "3.4.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/marcelojcn/sadistic-block-extension.git",
+  "author": "Marcelo Nunes <marcelojcnunes@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
