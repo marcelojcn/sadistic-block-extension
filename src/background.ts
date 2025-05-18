@@ -1,4 +1,13 @@
-import { getCurrentTab } from "./helper";
+interface Tab {
+  id?: number;
+  url?: string;
+}
+
+async function getCurrentTab(): Promise<Tab | undefined> {
+  const queryOptions = { active: true, lastFocusedWindow: true };
+  const [tab] = await chrome.tabs.query(queryOptions);
+  return tab;
+}
 
 async function check(): Promise<void> {
   const result = await chrome.storage.local.get(["blockedUrls"]);
@@ -17,7 +26,7 @@ async function check(): Promise<void> {
 
   if (blockedUrls.some((url) => domain.includes(url))) {
     if (currentTab.id) {
-      chrome.tabs.update(currentTab.id, { url: './static/blocked.html' });
+      chrome.tabs.update(currentTab.id, { url: "./static/blocked.html" });
     }
   }
 }
@@ -28,4 +37,4 @@ chrome.webNavigation.onBeforeNavigate.addListener(async () => {
 
 chrome.tabs.onActivated.addListener(async () => {
   await check();
-}); 
+});

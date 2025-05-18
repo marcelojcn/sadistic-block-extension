@@ -18,10 +18,12 @@
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="../css/output.css" />
   </head>
-  <body class="bg-white">
-    <div class="container mx-auto px-4">
+  <body>
+    <div class="container mx-auto px-4 rounded-sm h-64">
       <div class="mb-4">
-        <h3 class="text-xl font-bold">A Sadistic Focus Extension</h3>
+        <h2 class="text-xl font-bold text-gray-700">
+          A Sadistic approach to focus!
+        </h2>
       </div>
       <div class="mb-4">
         <div class="flex gap-2">
@@ -30,28 +32,26 @@
               type="text"
               placeholder="New url to be blocked..."
               id="newBlockedUrl"
-              class="w-full px-3 py-2 border rounded"
+              class="w-full px-3 py-2 placeholder:italic placeholder:text-slate-400 text-sm"
             />
+            <hr class="shadow-sm" />
           </div>
           <div>
             <button
               id="newBlockedUrlButton"
-              class="px-4 py-2 text-black rounded hover:bg-blue-600"
+              class="py-2 text-sm font-bold text-gray-700 hover:text-gray-400 hover:underline"
             >
-              +
+              Add
             </button>
           </div>
         </div>
       </div>
-      <div>
-        <table id="blockedUrlsTable" class="w-full">
-          <thead>
-            <tr>
-              <th class="text-left py-2">Blocked</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <div class="overflow-y-auto h-36">
+        <h3 class="text-lg font-bold text-gray-700">Blocked:</h3>
+        <div
+          id="blockedUrlsTable"
+          class="divide-y divide-dashed text-base flex flex-col space-y-1"
+        ></div>
       </div>
     </div>
   </body>
