@@ -6,6 +6,14 @@ export const getCurrentTab = async (): Promise<Tab | undefined> => {
   return tab;
 };
 
+export const getCurrentDomain = async (): Promise<string | undefined> => {
+  const currentTab = await getCurrentTab();
+  const currentUrl = currentTab?.url;
+  if (!currentUrl) return;
+  const deserializedUrl = new URL(currentUrl);
+  return deserializedUrl.hostname;
+};
+
 export const checkBlockedUrl = async (): Promise<void> => {
   const result = await chrome.storage.local.get(["blockedUrls"]);
 

@@ -1,9 +1,19 @@
 import { BlockedUrl } from "@/common/types";
+import { checkBlockedUrl, getCurrentDomain } from "@/common/utils";
+import { isURL } from "class-validator";
 import React, { useState, useEffect } from "react";
 
 const Popup: React.FC = () => {
   const [newUrl, setNewUrl] = useState("");
   const [blockedUrls, setBlockedUrls] = useState<BlockedUrl[]>([]);
+
+  useEffect(() => {
+    getCurrentDomain().then((domain) => {
+      if (domain && isURL(domain)) {
+        setNewUrl(domain);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     // Load blocked URLs from storage
@@ -14,7 +24,7 @@ const Popup: React.FC = () => {
     });
   }, []);
 
-  const handleAddUrl = (): void => {
+  const handleAddUrl = async (): Promise<void> => {
     if (!newUrl) return;
 
     const newBlockedUrl: BlockedUrl = {
@@ -26,6 +36,8 @@ const Popup: React.FC = () => {
     setBlockedUrls(updatedUrls);
     chrome.storage.local.set({ blockedUrls: updatedUrls });
     setNewUrl("");
+
+    await checkBlockedUrl();
   };
 
   const handleRemoveUrl = (urlToRemove: string): void => {
@@ -78,7 +90,7 @@ const Popup: React.FC = () => {
               <div className="flex items-center gap-2">
                 <img
                   className="w-4 h-4 drop-shadow-md"
-                  src={`https://${domain}/favicon.ico`}
+                  src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
                   alt={`${domain} favicon`}
                 />
                 <span className="truncate text-left">{domain}</span>

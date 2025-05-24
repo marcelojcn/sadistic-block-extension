@@ -2,8 +2,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.fixAll.ts": "always"
+    "source.fixAll.eslint": "always"
   },
   "eslint.format.enable": true,
   "prettier.enable": true,
@@ -23,8 +22,5 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "tailwindCSS.classAttributes": ["class", "className", "theme"],
-  "editor.quickSuggestions": {
-    "strings": true
-  }
+  "tailwindCSS.classAttributes": ["class", "className", "theme"]
 }

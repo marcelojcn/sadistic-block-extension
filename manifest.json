@@ -9,7 +9,8 @@
     "128": "images/stop_128.png"
   },
   "background": {
-    "service_worker": "dist/background.js"
+    "service_worker": "dist/background.js",
+    "type": "module"
   },
   "action": {
     "default_title": "Sadistic Focus",
