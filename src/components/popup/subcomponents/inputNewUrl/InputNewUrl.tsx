@@ -10,7 +10,7 @@ const InputNewUrl: React.FC<{
 }> = ({ blockedUrls, setBlockedUrls }) => {
   const [newUrl, setNewUrl] = useState("");
   const [showOptions, setShowOptions] = useState(false);
-  const [options, setOptions] = useState({} as BlockedUrlOptions);
+  const [option, setOptions] = useState(BlockedUrlOptions.DETOX);
 
   useEffect(() => {
     getCurrentDomain().then((domain) => {
@@ -25,28 +25,38 @@ const InputNewUrl: React.FC<{
 
     const newBlockedUrl: BlockedUrl = {
       domain: newUrl,
-      options,
-      createdAt: new Date(),
+      option,
+      createdAt: new Date().getTime(),
     };
 
     const updatedUrls = [...blockedUrls, newBlockedUrl];
+    console.log("Storing updatedUrls:", updatedUrls);
     setBlockedUrls(updatedUrls);
-    chrome.storage.local.set({ blockedUrls: updatedUrls });
+    chrome.storage.local.set({ blockedUrls: updatedUrls }, () => {
+      console.log("Storage set complete");
+      chrome.storage.local.get(["blockedUrls"], (result) => {
+        console.log(
+          "Verification - blockedUrls in storage:",
+          result.blockedUrls
+        );
+      });
+    });
     setNewUrl("");
 
     setShowOptions(false);
-    setOptions({});
+    setOptions(BlockedUrlOptions.DETOX);
 
     await checkBlockedUrl();
   };
 
-  const handleOptionChange = (option: string, checked: boolean): void => {
+  const handleOptionChange = (
+    option: BlockedUrlOptions,
+    checked: boolean
+  ): void => {
     // Handle option change here
     console.log("Option changed:", option, checked);
 
-    setOptions({
-      [option]: checked,
-    });
+    setOptions(option);
   };
 
   return (

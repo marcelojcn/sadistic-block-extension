@@ -1,11 +1,12 @@
+import { BlockedUrlOptions } from "@/common/types";
 import React, { useEffect } from "react";
 
 interface UrlInputOptionProps {
-  id: string;
+  id: BlockedUrlOptions;
   emoji: string;
   text: string;
   checked?: boolean;
-  onOptionChange: (option: string, checked: boolean) => void;
+  onOptionChange: (option: BlockedUrlOptions, checked: boolean) => void;
 }
 
 const UrlInputOption: React.FC<UrlInputOptionProps> = ({

@@ -9,6 +9,8 @@ const Popup: React.FC = () => {
   useEffect(() => {
     // Load blocked URLs from storage
     chrome.storage.local.get(["blockedUrls"], (result) => {
+      console.log("Storage result:", result);
+      console.log("blockedUrls from storage:", result.blockedUrls);
       if (result.blockedUrls) {
         setBlockedUrls(result.blockedUrls);
       }

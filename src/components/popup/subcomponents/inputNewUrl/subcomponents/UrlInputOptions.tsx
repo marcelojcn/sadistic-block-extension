@@ -1,9 +1,10 @@
 import React from "react";
 import UrlInputOption from "./UrlInputOption";
+import { BlockedUrlOptions } from "@/common/types";
 
 interface UrlInputOptionsProps {
   isOpen: boolean;
-  onOptionChange: (option: string, checked: boolean) => void;
+  onOptionChange: (option: BlockedUrlOptions, checked: boolean) => void;
 }
 
 const UrlInputOptions: React.FC<UrlInputOptionsProps> = ({
@@ -16,20 +17,20 @@ const UrlInputOptions: React.FC<UrlInputOptionsProps> = ({
     <div className="mt-2 space-y-2">
       <ul className="flex flex-row gap-1 pb-2">
         <UrlInputOption
-          id="detox"
+          id={BlockedUrlOptions.DETOX}
           emoji="🧘‍♂️"
           text="Detox"
           checked={true}
           onOptionChange={onOptionChange}
         />
         <UrlInputOption
-          id="onlyToday"
+          id={BlockedUrlOptions.ONLY_TODAY}
           emoji="📅"
           text="Only Today"
           onOptionChange={onOptionChange}
         />
         <UrlInputOption
-          id="easyRemoval"
+          id={BlockedUrlOptions.EASY_REMOVAL}
           emoji="🎯"
           text="Easy Removal"
           onOptionChange={onOptionChange}

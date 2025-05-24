@@ -3,14 +3,14 @@ export interface Tab {
   url?: string;
 }
 
-export interface BlockedUrlOptions {
-  detox?: boolean;
-  onlyToday?: boolean;
-  easyRemoval?: boolean;
+export enum BlockedUrlOptions {
+  DETOX = "detox",
+  ONLY_TODAY = "onlyToday",
+  EASY_REMOVAL = "easyRemoval",
 }
 
 export interface BlockedUrl {
   domain: string;
-  options?: BlockedUrlOptions;
-  createdAt: Date;
+  option?: BlockedUrlOptions;
+  createdAt: number;
 }
