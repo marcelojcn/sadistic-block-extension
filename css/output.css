@@ -1546,6 +1546,12 @@ input:checked + .toggle-bg {
 .h-64 {
   height: 16rem;
 }
+.h-96 {
+  height: 24rem;
+}
+.max-h-96 {
+  max-height: 24rem;
+}
 .min-h-\[200px\] {
   min-height: 200px;
 }
@@ -1807,6 +1813,9 @@ input:checked + .toggle-bg {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+.pb-4 {
+  padding-bottom: 1rem;
 }
 .pl-7 {
   padding-left: 1.75rem;
