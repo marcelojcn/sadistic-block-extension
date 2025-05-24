@@ -88,30 +88,32 @@ const Popup: React.FC = () => {
         </div>
       </div>
 
-      <div className="overflow-y-auto h-36">
-        <h3 className="text-lg font-bold text-gray-700 mb-2">Blocked:</h3>
-        <div className="flex flex-col space-y-2">
-          {blockedUrls.map(({ domain }) => (
-            <div
-              key={domain}
-              className="flex justify-between items-center py-1 px-2 rounded"
-            >
-              <div className="flex items-center gap-2">
-                <img
-                  className="w-4 h-4 drop-shadow-md"
-                  src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
-                  alt={`${domain} favicon`}
-                />
-                <span className="truncate text-left">{domain}</span>
-              </div>
-              <button
-                onClick={() => handleRemoveUrl(domain)}
-                className="text-red-500 hover:text-red-700"
+      <div className="relative">
+        <div className="overflow-y-auto h-36 scrollGradient">
+          <h3 className="text-lg font-bold text-gray-700 mb-2">Blocked:</h3>
+          <div className="flex flex-col space-y-2">
+            {blockedUrls.map(({ domain }) => (
+              <div
+                key={domain}
+                className="flex justify-between items-center py-1 px-2 rounded"
               >
-                Remove
-              </button>
-            </div>
-          ))}
+                <div className="flex items-center gap-2">
+                  <img
+                    className="w-4 h-4 drop-shadow-md"
+                    src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+                    alt={`${domain} favicon`}
+                  />
+                  <span className="truncate text-left">{domain}</span>
+                </div>
+                <button
+                  onClick={() => handleRemoveUrl(domain)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
