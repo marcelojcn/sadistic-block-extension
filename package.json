@@ -3,30 +3,40 @@
   "version": "1.1.0",
   "description": "Allow you to focus on your work by blocking distracting websites",
   "scripts": {
-    "build": "tsc",
+    "dev": "vite",
+    "build": "tsc && vite build && yarn build-css",
     "build-css": "postcss css/input.css -o css/output.css",
-    "watch": "tsc -w",
+    "watch": "vite build --watch",
     "watch-css": "postcss css/input.css -o css/output.css --watch",
-    "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "postinstall": "flowbite-react patch"
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
     "@types/chrome": "^0.0.323",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.27.0",
     "postcss": "^8.5.3",
     "postcss-cli": "^11.0.1",
     "prettier": "3.5.3",
-    "tailwindcss": "3.4.1",
+    "tailwindcss": "3.3.3",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.32.1",
+    "vite": "^6.3.5"
   },
   "main": "index.js",
   "repository": "https://github.com/marcelojcn/sadistic-block-extension.git",
   "author": "Marcelo Nunes <marcelojcnunes@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "flowbite": "^3.1.2"
+    "flowbite": "^3.1.2",
+    "flowbite-react": "^0.11.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

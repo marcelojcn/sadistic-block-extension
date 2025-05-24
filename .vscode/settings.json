@@ -19,5 +19,12 @@
         "cmd": "yarn build-css"
       }
     ]
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.classAttributes": ["class", "className", "theme"],
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }
