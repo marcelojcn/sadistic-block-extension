@@ -1,17 +1,10 @@
 import { BlockedUrl } from "@/common/types";
+import RemoveBlockedUrlButton from "./subcomponents/removeBlockedUrlButton/RemoveBlockedUrlButton";
 
 const BlockedUrlList: React.FC<{
   blockedUrls: BlockedUrl[];
   setBlockedUrls: React.Dispatch<React.SetStateAction<BlockedUrl[]>>;
 }> = ({ blockedUrls, setBlockedUrls }) => {
-  const handleRemoveUrl = (urlToRemove: string): void => {
-    const updatedUrls = blockedUrls.filter(
-      ({ domain }) => domain !== urlToRemove
-    );
-    setBlockedUrls(updatedUrls);
-    chrome.storage.local.set({ blockedUrls: updatedUrls });
-  };
-
   return (
     <div className="pb-4 relative">
       <h3 className="text-lg font-bold text-gray-700 mb-2">Blocked:</h3>
@@ -30,12 +23,12 @@ const BlockedUrlList: React.FC<{
                 />
                 <span className="truncate text-left">{domain}</span>
               </div>
-              <button
-                onClick={() => handleRemoveUrl(domain)}
-                className="text-red-500 hover:text-red-700"
-              >
-                Remove
-              </button>
+
+              <RemoveBlockedUrlButton
+                domain={domain}
+                blockedUrls={blockedUrls}
+                setBlockedUrls={setBlockedUrls}
+              />
             </div>
           ))}
         </div>
