@@ -1,4 +1,4 @@
-import { BlockedUrl } from "@/common/types";
+import { BlockedUrl, BlockedUrlOptions } from "@/common/types";
 import { checkBlockedUrl, getCurrentDomain } from "@/common/utils";
 import { isURL } from "class-validator";
 import React, { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ const InputNewUrl: React.FC<{
 }> = ({ blockedUrls, setBlockedUrls }) => {
   const [newUrl, setNewUrl] = useState("");
   const [showOptions, setShowOptions] = useState(false);
+  const [options, setOptions] = useState({} as BlockedUrlOptions);
 
   useEffect(() => {
     getCurrentDomain().then((domain) => {
@@ -24,6 +25,7 @@ const InputNewUrl: React.FC<{
 
     const newBlockedUrl: BlockedUrl = {
       domain: newUrl,
+      options,
       createdAt: new Date(),
     };
 
@@ -32,12 +34,19 @@ const InputNewUrl: React.FC<{
     chrome.storage.local.set({ blockedUrls: updatedUrls });
     setNewUrl("");
 
+    setShowOptions(false);
+    setOptions({});
+
     await checkBlockedUrl();
   };
 
   const handleOptionChange = (option: string, checked: boolean): void => {
     // Handle option change here
     console.log("Option changed:", option, checked);
+
+    setOptions({
+      [option]: checked,
+    });
   };
 
   return (

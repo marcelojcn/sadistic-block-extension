@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 interface UrlInputOptionProps {
   id: string;
@@ -15,9 +15,11 @@ const UrlInputOption: React.FC<UrlInputOptionProps> = ({
   checked,
   onOptionChange,
 }) => {
-  if (checked) {
-    onOptionChange(id, checked);
-  }
+  useEffect(() => {
+    if (checked) {
+      onOptionChange(id, checked);
+    }
+  }, []); // Empty array means this runs once on mount
 
   return (
     <li>
