@@ -1434,6 +1434,9 @@ input:checked + .toggle-bg {
 .left-0 {
   left: 0px;
 }
+.left-1 {
+  left: 0.25rem;
+}
 .right-0 {
   right: 0px;
 }
@@ -1712,10 +1715,6 @@ input:checked + .toggle-bg {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1739,6 +1738,12 @@ input:checked + .toggle-bg {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+.pl-7 {
+  padding-left: 1.75rem;
+}
+.pr-1 {
+  padding-right: 0.25rem;
 }
 .pt-2 {
   padding-top: 0.5rem;

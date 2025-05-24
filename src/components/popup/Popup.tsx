@@ -59,13 +59,22 @@ const Popup: React.FC = () => {
       <div className="mb-4">
         <div className="flex gap-2">
           <div className="flex-1">
-            <input
-              type="text"
-              placeholder="New url to be blocked..."
-              value={newUrl}
-              onChange={(e) => setNewUrl(e.target.value)}
-              className="w-full px-3 py-2 placeholder:italic placeholder:text-slate-400 text-sm border-0 focus:outline-none focus:ring-0"
-            />
+            <div className="flex items-center relative">
+              {newUrl && (
+                <img
+                  className="absolute left-1 w-4 h-4 drop-shadow-md"
+                  src={`https://icons.duckduckgo.com/ip3/${newUrl}.ico`}
+                  alt={`${newUrl} favicon`}
+                />
+              )}
+              <input
+                type="text"
+                placeholder="New url to be blocked..."
+                value={newUrl}
+                onChange={(e) => setNewUrl(e.target.value)}
+                className="w-full pl-7 pr-1 py-2 placeholder:italic placeholder:text-slate-400 text-sm border-0 focus:outline-none focus:ring-0"
+              />
+            </div>
             <hr className="shadow-sm" />
           </div>
           <div>
