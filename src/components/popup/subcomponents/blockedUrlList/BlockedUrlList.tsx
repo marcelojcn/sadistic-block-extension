@@ -8,7 +8,7 @@ const BlockedUrlList: React.FC<{
   return (
     <div className="pb-4 relative">
       <h3 className="text-lg font-bold text-gray-700 mb-2">Blocked:</h3>
-      <div className="overflow-y-auto h-36 scrollGradient">
+      <div className="overflow-y-auto h-36 verticalScrollGradient">
         <div className="flex flex-col space-y-2">
           {blockedUrls.map(({ domain }) => (
             <div

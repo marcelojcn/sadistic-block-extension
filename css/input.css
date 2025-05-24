@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .scrollGradient {
+  .verticalScrollGradient {
     background:
       linear-gradient(#ffffff 33%, rgba(255, 255, 255, 0)),
       linear-gradient(rgba(255, 255, 255, 0), #ffffff 66%) 0 100%,
@@ -24,7 +24,7 @@
     background-size:
       100% 48px,
       100% 48px,
-      100% 4px,
-      100% 4px;
+      100% 6px,
+      100% 6px;
   }
 }
