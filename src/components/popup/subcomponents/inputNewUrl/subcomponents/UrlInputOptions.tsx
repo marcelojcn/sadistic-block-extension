@@ -32,9 +32,21 @@ const UrlInputOptions: React.FC<UrlInputOptionsProps> = ({
           onOptionChange={onOptionChange}
         />
         <UrlInputOption
+          id={BlockedUrlOptions.HIDDEN}
+          emoji="🥷"
+          text="Hidden Forever"
+          onOptionChange={onOptionChange}
+        />
+        <UrlInputOption
           id={BlockedUrlOptions.EASY_REMOVAL}
           emoji="🎯"
           text="Anytime"
+          onOptionChange={onOptionChange}
+        />
+        <UrlInputOption
+          id={BlockedUrlOptions.EASY_REMOVAL_HIDDEN}
+          emoji="🤫"
+          text="Hidden Anytime"
           onOptionChange={onOptionChange}
         />
       </ul>

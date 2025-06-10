@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Sadistic Focus",
-  "description": "Allow you to focus on your work by blocking distracting websites",
-  "version": "1.1",
+  "description": "Here to make you be proactive!",
+  "version": "1.2",
   "icons": {
     "16": "images/stop_16.png",
     "32": "images/stop_32.png",

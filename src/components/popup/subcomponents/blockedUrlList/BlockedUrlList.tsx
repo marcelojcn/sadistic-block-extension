@@ -2,6 +2,7 @@ import { BlockedUrl, BlockedUrlOptions } from "@/common/types";
 import RemoveBlockedUrlButton from "./subcomponents/removeBlockedUrlButton/RemoveBlockedUrlButton";
 import InfiniteSpan from "./subcomponents/infiniteSpan/InfiniteSpan";
 import ExpiresInSpan from "./subcomponents/expiresInSpan/ExpiresInSpan";
+import { generateGibberish } from "@/common/utils";
 
 const OneMonthInHours = 24 * 30;
 
@@ -17,8 +18,12 @@ const BlockedUrlList: React.FC<{
         return -1;
       case BlockedUrlOptions.ONLY_TODAY:
         return 1;
-      case BlockedUrlOptions.EASY_REMOVAL:
+      case BlockedUrlOptions.HIDDEN:
         return 2;
+      case BlockedUrlOptions.EASY_REMOVAL_HIDDEN:
+        return 3;
+      case BlockedUrlOptions.EASY_REMOVAL:
+        return 4;
       default:
         return 0;
     }
@@ -49,7 +54,10 @@ const BlockedUrlList: React.FC<{
                   />
                 );
             }
-            if (blockedUrl.option === BlockedUrlOptions.EASY_REMOVAL) {
+            if (
+              blockedUrl.option === BlockedUrlOptions.EASY_REMOVAL ||
+              blockedUrl.option === BlockedUrlOptions.EASY_REMOVAL_HIDDEN
+            ) {
               action = (
                 <RemoveBlockedUrlButton
                   domain={blockedUrl.domain}
@@ -72,6 +80,15 @@ const BlockedUrlList: React.FC<{
                 );
               }
             }
+
+            let domain = blockedUrl.domain;
+            if (
+              blockedUrl.option === BlockedUrlOptions.HIDDEN ||
+              blockedUrl.option === BlockedUrlOptions.EASY_REMOVAL_HIDDEN
+            ) {
+              domain = generateGibberish(domain.length);
+            }
+
             return (
               <div
                 key={blockedUrl.domain}
@@ -80,12 +97,10 @@ const BlockedUrlList: React.FC<{
                 <div className="flex items-center gap-2">
                   <img
                     className="w-4 h-4 drop-shadow-md"
-                    src={`https://icons.duckduckgo.com/ip3/${blockedUrl.domain}.ico`}
-                    alt={`${blockedUrl.domain} favicon`}
+                    src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+                    alt={`${domain} favicon`}
                   />
-                  <span className="truncate text-left">
-                    {blockedUrl.domain}
-                  </span>
+                  <span className="truncate text-left">{domain}</span>
                 </div>
 
                 {action}

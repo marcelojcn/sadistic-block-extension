@@ -8,6 +8,8 @@ export enum BlockedUrlOptions {
   ONLY_TODAY = "onlyToday",
   EASY_REMOVAL = "easyRemoval",
   STRICT = "strict",
+  HIDDEN = "hidden",
+  EASY_REMOVAL_HIDDEN = "easyRemovalHidden",
 }
 
 export interface BlockedUrl {

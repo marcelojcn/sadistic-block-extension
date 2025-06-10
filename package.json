@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build && yarn build-css",
     "build-css": "postcss css/input.css -o css/output.css",
+    "release": "yarn build && mkdir -p release && cp -r dist release && cp -r static release && cp -r images release && cp -r css release && cp manifest.json release",
     "watch": "vite build --watch",
     "watch-css": "postcss css/input.css -o css/output.css --watch",
     "lint": "eslint . --ext .ts,.tsx",
