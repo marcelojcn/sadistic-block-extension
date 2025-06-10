@@ -18,7 +18,7 @@ const Popup: React.FC = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 my-5 rounded-sm max-h-96">
+    <div className="container mx-auto px-4 rounded-sm h-[350px] max-h-[350px]">
       <div className="mb-4">
         <h1 className="text-xl font-bold text-gray-700">
           A Sadistic approach to focus!

@@ -3,24 +3,43 @@ import RemoveBlockedUrlButton from "./subcomponents/removeBlockedUrlButton/Remov
 import InfiniteSpan from "./subcomponents/infiniteSpan/InfiniteSpan";
 import ExpiresInSpan from "./subcomponents/expiresInSpan/ExpiresInSpan";
 
+const OneMonthInHours = 24 * 30;
+
 const BlockedUrlList: React.FC<{
   blockedUrls: BlockedUrl[];
   setBlockedUrls: React.Dispatch<React.SetStateAction<BlockedUrl[]>>;
 }> = ({ blockedUrls, setBlockedUrls }) => {
+  const orderedBlockedUrls = blockedUrls.sort((a) => {
+    switch (a.option) {
+      case BlockedUrlOptions.STRICT:
+        return -2;
+      case BlockedUrlOptions.DETOX:
+        return -1;
+      case BlockedUrlOptions.ONLY_TODAY:
+        return 1;
+      case BlockedUrlOptions.EASY_REMOVAL:
+        return 2;
+      default:
+        return 0;
+    }
+  });
+
   return (
-    <div className="pb-4 relative">
+    <div className="mb-4 relative">
       <h3 className="text-lg font-bold text-gray-700 mb-2">Blocked:</h3>
       <div className="overflow-y-auto h-36 verticalScrollGradient">
         <div className="flex flex-col space-y-2">
-          {blockedUrls.map((blockedUrl) => {
-            console.log("blockedUrl", blockedUrl);
+          {orderedBlockedUrls.map((blockedUrl) => {
             let action = <InfiniteSpan />;
 
             const createdAt = new Date(blockedUrl.createdAt);
-            const hoursRemaining = 24 - createdAt.getHours();
+            const hoursSinceCreation =
+              (new Date().getTime() - createdAt.getTime()) / (1000 * 60 * 60);
             if (blockedUrl.option === BlockedUrlOptions.ONLY_TODAY) {
+              const hoursRemaining = 24 - createdAt.getHours();
+
               action =
-                hoursRemaining > 0 ? (
+                hoursSinceCreation > hoursRemaining ? (
                   <ExpiresInSpan blockedUrl={blockedUrl} />
                 ) : (
                   <RemoveBlockedUrlButton
@@ -40,6 +59,18 @@ const BlockedUrlList: React.FC<{
               );
             }
             if (blockedUrl.option === BlockedUrlOptions.DETOX) {
+              const hoursSinceCreation =
+                (new Date().getTime() - createdAt.getTime()) / (1000 * 60 * 60);
+
+              if (hoursSinceCreation > OneMonthInHours) {
+                action = (
+                  <RemoveBlockedUrlButton
+                    domain={blockedUrl.domain}
+                    blockedUrls={blockedUrls}
+                    setBlockedUrls={setBlockedUrls}
+                  />
+                );
+              }
             }
             return (
               <div
