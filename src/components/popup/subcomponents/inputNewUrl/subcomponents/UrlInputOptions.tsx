@@ -15,7 +15,7 @@ const UrlInputOptions: React.FC<UrlInputOptionsProps> = ({
 
   return (
     <div className="mt-2 space-y-2">
-      <ul className="flex flex-row gap-1 pb-2">
+      <ul className="flex flex-row flex-wrap gap-1 pb-2">
         <UrlInputOption
           id={BlockedUrlOptions.DETOX}
           emoji="🧘‍♂️"
@@ -33,6 +33,12 @@ const UrlInputOptions: React.FC<UrlInputOptionsProps> = ({
           id={BlockedUrlOptions.EASY_REMOVAL}
           emoji="🎯"
           text="Easy Removal"
+          onOptionChange={onOptionChange}
+        />
+        <UrlInputOption
+          id={BlockedUrlOptions.STRICT}
+          emoji="🔥"
+          text="Strict"
           onOptionChange={onOptionChange}
         />
       </ul>

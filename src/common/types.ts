@@ -7,6 +7,7 @@ export enum BlockedUrlOptions {
   DETOX = "detox",
   ONLY_TODAY = "onlyToday",
   EASY_REMOVAL = "easyRemoval",
+  STRICT = "strict",
 }
 
 export interface BlockedUrl {

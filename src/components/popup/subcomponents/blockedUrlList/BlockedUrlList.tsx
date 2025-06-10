@@ -18,11 +18,17 @@ const BlockedUrlList: React.FC<{
 
             const createdAt = new Date(blockedUrl.createdAt);
             const hoursRemaining = 24 - createdAt.getHours();
-            if (
-              blockedUrl.option === BlockedUrlOptions.ONLY_TODAY &&
-              hoursRemaining > 0
-            ) {
-              action = <ExpiresInSpan blockedUrl={blockedUrl} />;
+            if (blockedUrl.option === BlockedUrlOptions.ONLY_TODAY) {
+              action =
+                hoursRemaining > 0 ? (
+                  <ExpiresInSpan blockedUrl={blockedUrl} />
+                ) : (
+                  <RemoveBlockedUrlButton
+                    domain={blockedUrl.domain}
+                    blockedUrls={blockedUrls}
+                    setBlockedUrls={setBlockedUrls}
+                  />
+                );
             }
             if (blockedUrl.option === BlockedUrlOptions.EASY_REMOVAL) {
               action = (
@@ -32,6 +38,8 @@ const BlockedUrlList: React.FC<{
                   setBlockedUrls={setBlockedUrls}
                 />
               );
+            }
+            if (blockedUrl.option === BlockedUrlOptions.DETOX) {
             }
             return (
               <div
